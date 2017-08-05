@@ -27,7 +27,8 @@ services:
         - life.genny.name=swarmtest
       placement:
         constraints:
-          - "node.hostname == gerard"
+#          - "node.hostname == gerard"
+          - "node.role == manager"
 #          - "node.role == worker"
 
 
