@@ -1,4 +1,5 @@
 #!/bin/bash
+if [ -z "${1}" ]; then
 HOST_IP=
 while IFS=$': \t' read -a line ;do
     [ -z "${line%inet}" ] && ip=${line[${#line[1]}>4?1:2]} &&
@@ -9,6 +10,10 @@ while IFS=$': \t' read -a line ;do
 if [ -z "${HOST_IP}" ]; then
    HOST_IP=127.0.0.1
 fi
+else
+   HOST_IP="${1}"
+fi
+
 
 
 echo "host ip = ${HOST_IP}"
