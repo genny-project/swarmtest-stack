@@ -1,4 +1,8 @@
 #!/bin/bash
+
+docker network create -d overlay hazelcast-genny
+
+
 if [ -z "${1}" ]; then
 HOST_IP=
 while IFS=$': \t' read -a line ;do
