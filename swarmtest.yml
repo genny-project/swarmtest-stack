@@ -3,8 +3,8 @@ services:
   hazelcast-genny:
     image: gennyproject/swarmtest:latest
     hostname: hazelcast-genny 
-    volumes:
-      - ./realm:/opt/realm
+#    volumes:
+#      - ./realm:/opt/realm
 #    env_file:
 #      - ${ENV_FILE}
     environment:
