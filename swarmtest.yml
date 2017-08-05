@@ -1,0 +1,37 @@
+version: "3.2"
+services:
+  hazelcast-docker-swarm-discovery-spi-test:
+    image: gennyproject/swarmtest:latest
+    hostname: hazelcast-docker-swarm-discovery-spi-test 
+    volumes:
+      - ./realm:/opt/realm
+#    env_file:
+#      - ${ENV_FILE}
+    environment:
+      - VIRTUAL_HOST=vertx.genny.life
+      - VIRTUAL_PROTO=https
+      - VIRTUAL_PORT=8081
+      - LETSENCRYPT_HOST=vertx.genny.life
+      - LETSENCRYPT_EMAIL=acrow@outcome.life
+      - DOCKER_HOST=http://${HOST_IP}:2376
+    command: java -DdockerNetworkNames=hazelcast-docker-swarm-discovery-spi-test -DdockerServiceNames=swarmtest_hazelcast-docker-swarm-discovery-spi-test -DhazelcastPeerPort=5701 -jar /test.jar 
+    networks:
+      - hazelcast-docker-swarm-discovery-spi-test 
+    deploy:
+      replicas:  20 
+      #endpoint_mode: vip
+      update_config:
+         parallelism: 10
+         delay: 10s
+      labels:
+        - life.genny.name=swarmtest
+      placement:
+        constraints:
+          - "node.hostname == gerard"
+#          - "node.role == worker"
+
+
+
+networks:
+  hazelcast-docker-swarm-discovery-spi-test:
+    external: true
