@@ -18,10 +18,10 @@ services:
     networks:
       - hazelcast-docker-swarm-discovery-spi-test 
     deploy:
-      replicas:  20 
+      replicas:  2 
       #endpoint_mode: vip
       update_config:
-         parallelism: 10
+         parallelism: 2 
          delay: 10s
       labels:
         - life.genny.name=swarmtest
